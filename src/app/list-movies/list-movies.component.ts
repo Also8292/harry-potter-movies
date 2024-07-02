@@ -6,6 +6,7 @@ import { DurationPipe } from '../shared/duration.pipe';
 import { MatListModule } from '@angular/material/list';
 import { CustomCurrencyPipe } from '../shared/custom-currency.pipe';
 import { RouterModule } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
 
 export interface MovieModel {
   budget: string,
@@ -18,7 +19,7 @@ export interface MovieModel {
 @Component({
   selector: 'app-list-movies',
   standalone: true,
-  imports: [HttpClientModule, DatePipe, CustomCurrencyPipe, DurationPipe, MatListModule, RouterModule],
+  imports: [HttpClientModule, DatePipe, CustomCurrencyPipe, DurationPipe, MatListModule, RouterModule, MatIconModule],
   providers: [HttpClientModule, HttpClient],
   templateUrl: './list-movies.component.html',
   styleUrl: './list-movies.component.css'
