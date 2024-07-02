@@ -26,6 +26,7 @@
               "src/mockServiceWorker.js"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []

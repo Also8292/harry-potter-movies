@@ -1,1 +1,17 @@
-<h1>list-movies works!</h1>
+<div style="display: flex;">
+  <mat-list style="margin: auto;">
+    @for (movie of movies; track $index) {
+      <mat-list-item>
+        <h3 matListItemTitle>{{ movie.title }}</h3>
+        <p matListItemLine>
+          <span class="subtitle-margin">Release date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+          <span class="subtitle-margin">Budget: {{ movie.budget | customCurrency }}</span>
+          <span class="subtitle-margin">Duration: {{ movie.duration | duration }}</span>
+        </p>
+
+        <a mat-flat-button matListItemMeta [routerLink]="['/movies', movie.id]">Details</a>
+
+      </mat-list-item>
+    }
+  </mat-list>
+</div>
