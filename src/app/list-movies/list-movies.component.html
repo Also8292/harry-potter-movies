@@ -1,32 +1,31 @@
-<div style="display: flex;">
-  <mat-list style="margin: auto;">
-    <div class="filter-div">
-      <h3>Filters</h3>
-      <div style="display: flex;">
-        <div>
-          <label for="title">Title</label>
-          <input class="input-class" [(ngModel)]="title" type="text" name="title" id="title">
-        </div>
-        <div>
-          <label for="releaseYear">Release Year</label>
-          <input class="input-class" [(ngModel)]="releaseYear" type="number" name="Release year" id="releaseYear">
-        </div>
+
+<mat-list style="margin: auto;">
+  <div class="filter-div">
+    <h3>Filters</h3>
+    <div style="display: flex;">
+      <div>
+        <label for="title">Title</label>
+        <input class="input-class" [(ngModel)]="title" type="text" name="title" id="title">
+      </div>
+      <div>
+        <label for="releaseYear">Release Year</label>
+        <input class="input-class" [(ngModel)]="releaseYear" type="number" name="Release year" id="releaseYear">
       </div>
     </div>
-    @for (movie of movies | customFilter: title: releaseYear; track $index) {
-      <mat-list-item>
-        <mat-icon matListItemIcon>fiber_manual_record</mat-icon>
-        <h3 matListItemTitle>{{ movie.title }}</h3>
-        <p matListItemLine>
-          <span class="subtitle-margin">Release date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-          <span class="subtitle-margin">Budget: {{ movie.budget | customCurrency }}</span>
-          <span class="subtitle-margin">Duration: {{ movie.duration | duration }}</span>
-        </p>
+  </div>
+  @for (movie of movies | customFilter: title: releaseYear; track $index) {
+    <mat-list-item>
+      <mat-icon matListItemIcon>fiber_manual_record</mat-icon>
+      <h3 matListItemTitle>{{ movie.title }}</h3>
+      <p matListItemLine>
+        <span class="subtitle-margin">Release date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+        <span class="subtitle-margin">Budget: {{ movie.budget | customCurrency }}</span>
+        <span class="subtitle-margin">Duration: {{ movie.duration | duration }}</span>
+      </p>
 
-        <a mat-flat-button matListItemMeta [id]="movie.id" [routerLink]="['/movies', movie.id]">Details</a>
+      <a mat-flat-button matListItemMeta [id]="movie.id" [routerLink]="['/movies', movie.id]">Details</a>
 
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    }
-  </mat-list>
-</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  }
+</mat-list>
