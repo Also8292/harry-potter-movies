@@ -1,6 +1,19 @@
 <div style="display: flex;">
   <mat-list style="margin: auto;">
-    @for (movie of movies; track $index) {
+    <div class="filter-div">
+      <h3>Filters</h3>
+      <div style="display: flex;">
+        <div>
+          <label for="title">Title</label>
+          <input class="input-class" [(ngModel)]="title" type="text" name="title" id="title">
+        </div>
+        <div>
+          <label for="releaseYear">Release Year</label>
+          <input class="input-class" [(ngModel)]="releaseYear" type="number" name="Release year" id="releaseYear">
+        </div>
+      </div>
+    </div>
+    @for (movie of movies | customFilter: title: releaseYear; track $index) {
       <mat-list-item>
         <mat-icon matListItemIcon>fiber_manual_record</mat-icon>
         <h3 matListItemTitle>{{ movie.title }}</h3>

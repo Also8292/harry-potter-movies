@@ -1,3 +1,14 @@
 .subtitle-margin {
   margin: 0 10px;
 }
+
+.filter-div {
+  padding: 20px 0 50px 0;
+  background: #eee;
+  color: #000;
+}
+
+.input-class {
+  background-color: #fff;
+  color: #000;
+}
