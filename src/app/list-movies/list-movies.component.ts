@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { DurationPipe } from '../shared/pipes/duration.pipe';
 import { MatListModule } from '@angular/material/list';
 import { CustomCurrencyPipe } from '../shared/pipes/custom-currency.pipe';
@@ -13,8 +12,7 @@ import { MovieModel } from '../shared/models/movie.model';
 @Component({
   selector: 'app-list-movies',
   standalone: true,
-  imports: [HttpClientModule, DatePipe, AsyncPipe, CustomCurrencyPipe, DurationPipe, MatListModule, RouterModule, MatIconModule, CustomFilterPipe, FormsModule],
-  providers: [HttpClientModule, HttpClient],
+  imports: [ DatePipe, CustomCurrencyPipe, DurationPipe, MatListModule, RouterModule, MatIconModule, CustomFilterPipe, FormsModule],
   templateUrl: './list-movies.component.html',
   styleUrl: './list-movies.component.css'
 })

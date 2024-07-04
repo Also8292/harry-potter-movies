@@ -1,10 +1,8 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTableModule } from '@angular/material/table';
 import { CustomCurrencyPipe } from '../shared/pipes/custom-currency.pipe';
 import { DurationPipe } from '../shared/pipes/duration.pipe';
 import { MovieDetailsModel } from '../shared/models/movie-details.model';
@@ -18,8 +16,7 @@ export interface DetailsRow {
 @Component({
   selector: 'app-details-movie',
   standalone: true,
-  imports: [HttpClientModule, MatCardModule, MatIconModule, RouterModule, MatGridListModule, MatTableModule, CustomCurrencyPipe, DurationPipe],
-  providers: [HttpClientModule, HttpClient],
+  imports: [ MatCardModule, MatIconModule, RouterModule, MatGridListModule, CustomCurrencyPipe, DurationPipe],
   templateUrl: './details-movie.component.html',
   styleUrl: './details-movie.component.css'
 })
