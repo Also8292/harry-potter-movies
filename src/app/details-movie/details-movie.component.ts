@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CustomCurrencyPipe } from '../shared/pipes/custom-currency.pipe';
 import { DurationPipe } from '../shared/pipes/duration.pipe';
 import { MovieDetailsModel } from '../shared/models/movie-details.model';
+import { MoviesService } from '../services/movies.service';
 
 export interface DetailsRow {
   label: string,
@@ -26,7 +27,7 @@ export interface DetailsRow {
 })
 export class DetailsMovieComponent implements OnInit, OnDestroy {
 
-  private httpClient = inject(HttpClient);
+  private service = inject(MoviesService);
   private route = inject(ActivatedRoute);
   private subs?: Subscription;
   movie!: MovieDetailsModel;
@@ -58,13 +59,9 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.subs = this.getMovieDetails(this.route.snapshot.params['movieId']).subscribe(movie => {
+    this.subs = this.service.getMovieDetails(this.route.snapshot.params['movieId']).subscribe(movie => {
       this.movie = movie;
     });
-  }
-
-  getMovieDetails(movieId: string): Observable<MovieDetailsModel> {
-    return this.httpClient.get<MovieDetailsModel>(`/movies/${movieId}`);
   }
 
   ngOnDestroy(): void {
