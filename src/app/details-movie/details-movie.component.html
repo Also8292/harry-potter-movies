@@ -22,31 +22,12 @@
       <div class="details">
         <h2 style="text-align: center; margin-top: 4rem;">Details</h2>
         <mat-grid-list cols="4" rowHeight="2:1">
-          <div class="box-office">
-            <mat-grid-tile [colspan]="1" style="border: solid;">{{ detailsRows[0].label }}</mat-grid-tile>
-            <mat-grid-tile [colspan]="3" style="border: solid;">{{ movie.box_office | customCurrency }}</mat-grid-tile>
-          </div>
-
-          <div class="budget">
-            <mat-grid-tile [colspan]="1" style="border: solid;">{{ detailsRows[1].label }}</mat-grid-tile>
-            <mat-grid-tile [colspan]="3" style="border: solid;">{{ movie.budget | customCurrency }}</mat-grid-tile>
-          </div>
-
-          <div class="duration">
-            <mat-grid-tile [colspan]="1" style="border: solid;">{{ detailsRows[2].label }}</mat-grid-tile>
-            <mat-grid-tile [colspan]="3" style="border: solid;">{{ movie.duration | duration }}</mat-grid-tile>
-          </div>
-
-          <div class="producers">
-            <mat-grid-tile [colspan]="1" style="border: solid;">{{ detailsRows[3].label }}</mat-grid-tile>
-            <mat-grid-tile [colspan]="3" style="border: solid;">{{ movie.producers }}</mat-grid-tile>
-          </div>
-
-          <div class="cinematographers">
-            <mat-grid-tile [colspan]="1" style="border: solid;">{{ detailsRows[4].label }}</mat-grid-tile>
-            <mat-grid-tile [colspan]="3" style="border: solid;">{{ movie.cinematographers }}</mat-grid-tile>
-          </div>
-
+          @for (detail of detailsRows; track $index) {
+            <div>
+              <mat-grid-tile [colspan]="1" style="border: solid;">{{ detail.label }}</mat-grid-tile>
+              <mat-grid-tile [colspan]="3" style="border: solid;">{{ getDetailValue(detail) }}</mat-grid-tile>
+            </div>
+          }
         </mat-grid-list>
       </div>
     </mat-card-footer>

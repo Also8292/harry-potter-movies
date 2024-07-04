@@ -1,4 +1,3 @@
-
 <mat-list style="margin: auto;">
   <div class="filter-div">
     <h3>Filters</h3>
@@ -22,9 +21,7 @@
         <span class="subtitle-margin">Budget: {{ movie.budget | customCurrency }}</span>
         <span class="subtitle-margin">Duration: {{ movie.duration | duration }}</span>
       </p>
-
       <a mat-flat-button matListItemMeta [id]="movie.id" [routerLink]="['/movies', movie.id]">Details</a>
-
     </mat-list-item>
     <mat-divider></mat-divider>
   }

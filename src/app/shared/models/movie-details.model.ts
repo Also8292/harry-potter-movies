@@ -10,3 +10,9 @@ export interface MovieDetailsModel {
   producers: string[],
   summary: string
 }
+
+export interface MovieDetailsRow {
+  label: string,
+  field: string,
+  formatter?: string
+};

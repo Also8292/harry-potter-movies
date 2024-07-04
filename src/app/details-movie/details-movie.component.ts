@@ -5,18 +5,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CustomCurrencyPipe } from '../shared/pipes/custom-currency.pipe';
 import { DurationPipe } from '../shared/pipes/duration.pipe';
-import { MovieDetailsModel } from '../shared/models/movie-details.model';
+import { MovieDetailsModel, MovieDetailsRow } from '../shared/models/movie-details.model';
 
-export interface DetailsRow {
-  label: string,
-  field: string,
-  formatter?: string
-};
+
 
 @Component({
   selector: 'app-details-movie',
   standalone: true,
-  imports: [ MatCardModule, MatIconModule, RouterModule, MatGridListModule, CustomCurrencyPipe, DurationPipe],
+  imports: [MatCardModule, MatIconModule, RouterModule, MatGridListModule],
+  providers: [CustomCurrencyPipe, DurationPipe],
   templateUrl: './details-movie.component.html',
   styleUrl: './details-movie.component.css'
 })
@@ -25,7 +22,7 @@ export class DetailsMovieComponent implements OnInit {
   private route = inject(ActivatedRoute);
   movie!: MovieDetailsModel;
 
-  detailsRows: DetailsRow[] = [
+  detailsRows: MovieDetailsRow[] = [
     {
       label: 'Box office',
       field: 'box_office',
@@ -51,7 +48,23 @@ export class DetailsMovieComponent implements OnInit {
     },
   ];
 
+  private customCurrencyPipe = inject(CustomCurrencyPipe);
+  private durationPipe = inject(DurationPipe);
+
   ngOnInit(): void {
     this.movie = this.route.snapshot.data['movieDetails'] as MovieDetailsModel;
+    this.getDetailValue(this.detailsRows[0]);
+  }
+
+  getDetailValue = (detail: MovieDetailsRow) => {
+    let detaiValue = this.movie[detail.field as keyof MovieDetailsModel];
+
+    if (detail?.formatter === 'customCurrency') {
+      return this.customCurrencyPipe.transform(detaiValue as string);
+    } else if (detail?.formatter === 'duration') {
+      return this.durationPipe.transform(detaiValue as string);
+    }
+
+    return detaiValue;
   }
 }
