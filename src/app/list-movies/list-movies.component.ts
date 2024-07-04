@@ -1,22 +1,15 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable, Subscription, combineLatest, distinctUntilChanged, map, of, startWith } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { DurationPipe } from '../shared/duration.pipe';
+import { DurationPipe } from '../shared/pipes/duration.pipe';
 import { MatListModule } from '@angular/material/list';
-import { CustomCurrencyPipe } from '../shared/custom-currency.pipe';
+import { CustomCurrencyPipe } from '../shared/pipes/custom-currency.pipe';
 import { RouterModule } from '@angular/router';
-import {MatIconModule} from '@angular/material/icon';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomFilterPipe } from '../shared/custom-filter.pipe';
-
-export interface MovieModel {
-  budget: string,
-  duration: string,
-  id: string,
-  release_date: string,
-  title: string
-}
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { CustomFilterPipe } from '../shared/pipes/custom-filter.pipe';
+import { MovieModel } from '../shared/models/movie.model';
 
 @Component({
   selector: 'app-list-movies',
